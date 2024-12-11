@@ -306,6 +306,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 126691489}
+  - {fileID: 2066247847}
+  - {fileID: 1797511733}
   - {fileID: 1606064279}
   - {fileID: 387668774}
   - {fileID: 1930981919}
@@ -315,8 +317,6 @@ RectTransform:
   - {fileID: 761917387}
   - {fileID: 1913814309}
   - {fileID: 859518111}
-  - {fileID: 2066247847}
-  - {fileID: 1797511733}
   m_Father: {fileID: 2143351237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -780,6 +780,7 @@ GameObject:
   - component: {fileID: 58749421}
   - component: {fileID: 58749423}
   - component: {fileID: 58749422}
+  - component: {fileID: 58749424}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -826,7 +827,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Don't have an account? <color="blue">Sign Up</color>
+  m_text: Don't have an account? <link="actionTwo"><color="blue">Sign Up</color></link>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 998439c4c2d86e541a41f128e1ca4344, type: 2}
   m_sharedMaterial: {fileID: -3463722483321384618, guid: 998439c4c2d86e541a41f128e1ca4344, type: 2}
@@ -903,6 +904,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58749420}
   m_CullTransparentMesh: 1
+--- !u!114 &58749424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58749420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962490fe1d9dc1c49a7eb9a89fd3a2ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 58749422}
+  ActionNameOne: actionTwo
+  onLinkClickedOne:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1797511732}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2066247846}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  ActionNameTwo: 
+  onLinkClickedTwo:
+    m_PersistentCalls:
+      m_Calls: []
+  ActionNameThree: 
+  onLinkClickedThree:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &116678427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,7 +1508,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &126691489
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1535,7 +1585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadingPage: {fileID: 126691488}
-  _nextPage: {fileID: 1606064278}
+  _nextPage: {fileID: 2066247846}
   _loadingTime: 2
 --- !u!1 &127686946
 GameObject:
@@ -2377,7 +2427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &376436284
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6911,8 +6961,20 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
-  m_IsOn: 1
+      m_Calls:
+      - m_Target: {fileID: 1278771847}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_IsOn: 0
 --- !u!1 &979415180
 GameObject:
   m_ObjectHideFlags: 0
@@ -8466,11 +8528,47 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1278771848}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2018108425}
+        m_TargetAssemblyTypeName: AccountManager, Assembly-CSharp
+        m_MethodName: Registration
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2066247846}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1797511732}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1278771848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9204,7 +9302,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1471741242}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2018108425}
+        m_TargetAssemblyTypeName: AccountManager, Assembly-CSharp
+        m_MethodName: Authorization
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1471741242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9388,6 +9498,7 @@ GameObject:
   - component: {fileID: 1519026962}
   - component: {fileID: 1519026964}
   - component: {fileID: 1519026963}
+  - component: {fileID: 1519026965}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -9434,7 +9545,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Do you have account? <color="blue">Sign In</color>
+  m_text: Do you have account? <link="action"><color="blue">Sign In</color></link>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 998439c4c2d86e541a41f128e1ca4344, type: 2}
   m_sharedMaterial: {fileID: -3463722483321384618, guid: 998439c4c2d86e541a41f128e1ca4344, type: 2}
@@ -9511,6 +9622,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519026961}
   m_CullTransparentMesh: 1
+--- !u!114 &1519026965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519026961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962490fe1d9dc1c49a7eb9a89fd3a2ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 1519026963}
+  ActionNameOne: action
+  onLinkClickedOne:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2066247846}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1797511732}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  ActionNameTwo: 
+  onLinkClickedTwo:
+    m_PersistentCalls:
+      m_Calls: []
+  ActionNameThree: 
+  onLinkClickedThree:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1519162872
 GameObject:
   m_ObjectHideFlags: 0
@@ -12394,6 +12554,94 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017578992}
   m_CullTransparentMesh: 1
+--- !u!1 &2018108424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2018108426}
+  - component: {fileID: 2018108425}
+  m_Layer: 0
+  m_Name: AccountManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2018108425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018108424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ad02bfef2cfae40ad02ef287a8fd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _userNameReg: {fileID: 816597814}
+  _userEmailReg: {fileID: 560182907}
+  _userPasswordReg: {fileID: 1670544721}
+  _userNameAuth: {fileID: 2031910160}
+  _userPasswordAuth: {fileID: 969859388}
+  IsAuthorized:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 376436283}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1797511732}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1606064278}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!4 &2018108426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018108424}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2031910158
 GameObject:
   m_ObjectHideFlags: 0
@@ -12720,7 +12968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2066247847
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13334,3 +13582,4 @@ SceneRoots:
   - {fileID: 844514567}
   - {fileID: 2143351237}
   - {fileID: 547998948}
+  - {fileID: 2018108426}

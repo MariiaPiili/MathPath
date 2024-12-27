@@ -4,9 +4,9 @@ using UnityEngine;
 public class Loading : MonoBehaviour
 {
     [SerializeField] private GameObject _loadingPage;
-    [SerializeField] private GameObject _nextPage;
     [SerializeField] private float _loadingTime;
 
+    public GameObject NextPage;
     private void Start()
     {
         StartCoroutine(LoadingMethod());
@@ -16,7 +16,7 @@ public class Loading : MonoBehaviour
     {
         yield return new WaitForSeconds(_loadingTime);
         _loadingPage.SetActive(false);
-        _nextPage.SetActive(true);
+        NextPage.SetActive(true);
         yield return null;
     }
 }

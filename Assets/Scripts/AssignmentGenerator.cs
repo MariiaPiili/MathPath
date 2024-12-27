@@ -106,8 +106,10 @@ public class AssignmentGenerator : MonoBehaviour
 
             _count = 0f;
             _eventLevelCompleted.Invoke();//Переход к сранице с результатом
+            PlayerPrefs.SetInt("level", 2);
             _progress.ProgressCoalcilate();
-            _progress.ResetPogress();
+            _inputFieldForAnswer.text = "";
+            //_progress.ResetPogress();
             _firstTry = true;
         }
     }

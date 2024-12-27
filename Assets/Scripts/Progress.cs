@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class Progress : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class Progress : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _progressResilt;
     [SerializeField] private TextMeshProUGUI _progressHeading;
     [SerializeField] private TextMeshProUGUI _progressDescription;
+    [SerializeField] private TextMeshProUGUI _welcomeToNextLevelHeading;
+    [SerializeField] private TextMeshProUGUI _welcomeToNextLevelText;
+
 
     [Header("Awesome!")]
     [SerializeField] private string _headingAwesome;
@@ -21,6 +26,13 @@ public class Progress : MonoBehaviour
     [Header("Keep going")]
     [SerializeField] private string _headingKeepGoing;
     [SerializeField] private string _descriptionKeepGoing;
+
+    [SerializeField] private EmailSender _emailSender;
+    [SerializeField] private AccountManager _accountManager;
+
+    [SerializeField] private Color _colorGreat;
+    [SerializeField] private Color _colorGood;
+    [SerializeField] private Color _colorBad;
 
     private int _correctedAnswers;
     private int _incorrectedAnswers;
@@ -52,24 +64,40 @@ public class Progress : MonoBehaviour
         Save();
     }
 
-    public void ProgressCoalcilate()
+    public void ProgressCoalcilate(bool calculate = true)
     {
         _progressResilt.text = $"{_correctedAnswers}/{_totalAnswers}";
         _progressBar.fillAmount = _correctedAnswers * 1.0f / _totalAnswers;
         if (_correctedAnswers > 7)
         {
             _progressHeading.text = _headingAwesome;
-            _progressDescription.text = _descriptionAwesome;
+            _progressDescription.text = _descriptionAwesome.Replace("\\n", "\n"); ;
+            _progressBar.color = _colorGreat;
+            _progressHeading.color = _colorGreat;
         }
         else if (_correctedAnswers > 4 && _correctedAnswers <= 7)
         {
             _progressHeading.text = _headingGood;
-            _progressDescription.text = _descriptionGood;
+            _progressDescription.text = _descriptionGood.Replace("\\n", "\n"); ;
+            _progressBar.color = _colorGood;
+            _progressHeading.color = _colorGood;
         }
         else
         {
             _progressHeading.text = _headingKeepGoing;
-            _progressDescription.text = _descriptionKeepGoing;
+            _progressDescription.text = _descriptionKeepGoing.Replace("\\n", "\n");
+            _progressBar.color = _colorBad;
+            _progressHeading.color = _colorBad;
+        }
+        if (calculate)
+        {
+            _emailSender.SendEmail(_accountManager.UserEmail, "MathPath pgogress", $"{_accountManager.UserName} completed the level with {_correctedAnswers} corrected answers from {_totalAnswers}");
+        }
+        if (PlayerPrefs.GetInt("level") == 2)
+        {
+            _welcomeToNextLevelHeading.text = "Welcome to Level 2!";
+            _welcomeToNextLevelText.text = "Get ready for even more exciting\\n math puzzles! New adventures\\n and challenges await. Let’s see\\n what you can do!";
+            _welcomeToNextLevelText.text = _welcomeToNextLevelText.text.Replace("\\n", "\n");
         }
     }
 

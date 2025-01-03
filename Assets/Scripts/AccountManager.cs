@@ -1,4 +1,4 @@
-asdusing System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -20,6 +20,12 @@ public class AccountManager : MonoBehaviour
 
     [SerializeField] private GameObject _signUpPage;
     [SerializeField] private GameObject _signInPage;
+    [SerializeField] private GameObject _nameIsLength;
+    [SerializeField] private GameObject _nameIsLetter;
+    [SerializeField] private GameObject _emailContainsAt;
+    [SerializeField] private GameObject _passwordContinsLetter;
+    [SerializeField] private GameObject _passwordContainsSymbol;
+    [SerializeField] private GameObject _passwordContainsDigit;
     [SerializeField] private Loading _loading;
 
     [SerializeField] private Button _registration;
@@ -92,13 +98,19 @@ public class AccountManager : MonoBehaviour
 
     public void InputName(string inputUserName)
     {
-        _isName = inputUserName.Length >= 4 && inputUserName.All(char.IsLetter);
+        bool isLength = inputUserName.Length >= 4;
+        bool isLetter = inputUserName.All(char.IsLetter) && inputUserName.Length > 0;
+        _isName = isLength && isLetter;
+        _nameIsLength.SetActive(isLength);
+        _nameIsLetter.SetActive(isLetter);
         IsActiveButton();
     }
 
     public void InputEmail(string inputUserEmail)
     {
-        _isEmail = inputUserEmail.Contains("@");
+        bool isContainsAt = inputUserEmail.Contains("@");
+        _isEmail = isContainsAt;
+        _emailContainsAt.SetActive(isContainsAt);
         IsActiveButton();
     }
 
@@ -108,11 +120,14 @@ public class AccountManager : MonoBehaviour
         bool containsDigits = inputUserPassword.Any(char.IsDigit);   
         bool containsSymbols = inputUserPassword.Any(c => !char.IsLetterOrDigit(c));
         _isPassword = containsLetters && containsDigits && containsSymbols;
+        _passwordContinsLetter.SetActive(containsLetters);
+        _passwordContainsSymbol.SetActive(containsSymbols);
+        _passwordContainsDigit.SetActive(containsDigits);
         IsActiveButton();
     }
 
     public void InputToggle(bool toggle)
-    {
+    {        
         _isToggled = toggle;
         IsActiveButton() ;
     }

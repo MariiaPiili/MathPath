@@ -272,15 +272,16 @@ Open your terminal (Command Prompt, PowerShell, or any terminal of your choice) 
 ```csharp
 git clone https://github.com/MariiaPiili/MathPath.git
 ```
-3. Open the project in Unity.
-4. Configure the SendGrid API key
+2. Open the project in Unity.
+3. Configure the SendGrid API key
 Open the script `EmailSender.cs` located in the project.
 Replace the placeholder for sendGridApiKey with your actual SendGrid API key.
 ```csharp
 string sendGridApiKey = "YOUR_SENDGRID_API_KEY";
 ```
 Note: You need to have a SendGrid account and API key. You can generate one from the SendGrid dashboard.
-5. Run the app in the Unity Editor or build it for the desired platform.
+
+4. Run the app in the Unity Editor or build it for the desired platform.
 
 ## Screenshots 
 

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-[Serializable]
 
+[Serializable]
 public class Assignment
 {
     public string AssignmentItself;

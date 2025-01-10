@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿
+using Newtonsoft.Json;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Networking;
 
 public class AssignmentGenerator : MonoBehaviour
 {
@@ -26,7 +30,7 @@ public class AssignmentGenerator : MonoBehaviour
     private float _winTimer;
     private float _lostTimer;
     private bool _generation;
-    private float _count; 
+    private float _count;
     private bool _firstTry;
 
     private void Update()
@@ -43,7 +47,6 @@ public class AssignmentGenerator : MonoBehaviour
             _inputFieldForAnswer.gameObject.SetActive(true);
             if (_generation)
             {
-
                 Generate();
             }
         }
@@ -68,22 +71,24 @@ public class AssignmentGenerator : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         GetJsonData(1);
-        Generate();
+    }
+
+    private void Start()
+    {        
         _winTimer = AnimationDuration;
         _timer = AnimationDuration;
         _lostTimer = AnimationDuration;
         _count = _progress.correctedAnswers + _progress.incorrectedAnswers;
-        _firstTry = true;
+        _firstTry = false;
     }
 
     public void Check()
     {
         if (_count < 9)
         {
-
             if (_inputFieldForAnswer.text == _currentAssignment.Answer)
             {
                 _winTimer = 0;
@@ -103,7 +108,6 @@ public class AssignmentGenerator : MonoBehaviour
         }
         else
         {
-
             _count = 0f;
             _eventLevelCompleted.Invoke();//Переход к сранице с результатом
             PlayerPrefs.SetInt("level", 2);
@@ -119,11 +123,13 @@ public class AssignmentGenerator : MonoBehaviour
 
         if (_firstTry)
         {
+            Debug.Log("load");
             Load();
             _firstTry = false;
         }
         else
         {
+            Debug.Log("Save");
             int index = UnityEngine.Random.Range(0, Assignments.Count);
             _currentAssignment = Assignments[index];
             Assignments.RemoveAt(index);
@@ -142,18 +148,21 @@ public class AssignmentGenerator : MonoBehaviour
 
     private void Load()
     {
+        Debug.Log("_currentAssignment" + _currentAssignment==null);
+        Debug.Log("_textForAssignment" + _textForAssignment == null);
+        Debug.Log("_inputFieldForAnswer" + _inputFieldForAnswer == null);
         _currentAssignment.AssignmentItself = PlayerPrefs.GetString("saveAssignment");
         _currentAssignment.Answer = PlayerPrefs.GetString("saveAnswer");
         _textForAssignment.text = _currentAssignment.AssignmentItself;
         _inputFieldForAnswer.text = "";
     }
-
+    //public Wrapper<Assignment> wrapper;
     private void SetJsonData()
     {
         string json = JsonUtility.ToJson(new Wrapper<Assignment>(Assignments), true);
 
         // Укажите путь для сохранения файла (например, в папку Application.persistentDataPath)
-        string path = Path.Combine(Application.persistentDataPath, "assignments.json");
+        string path = Path.Combine(Application.streamingAssetsPath, "assignments.json");
 
         // Сохранение в файл
         File.WriteAllText(path, json);
@@ -163,17 +172,49 @@ public class AssignmentGenerator : MonoBehaviour
 
     public void GetJsonData(int level)
     {
-        string path = Path.Combine(Application.persistentDataPath, $"assignments{level}.json");
+        StartCoroutine(LoadJson(level));
+    }
 
-        if (!File.Exists(path))
+    private IEnumerator LoadJson(int level)
+    {
+        string path = Path.Combine(Application.streamingAssetsPath, $"assignments{level}.json");
+
+        Debug.Log($"Attempting to load JSON from path: {path}");
+
+
+        Debug.Log("Open file" + File.Exists(path));
+        UnityWebRequest request = UnityWebRequest.Get(path);
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
         {
-            Debug.LogError($"File not found at path: {path}");
-            return;
+            Debug.Log("JSON file loaded successfully!");
+
+            string json = request.downloadHandler.text;
+            Debug.Log("Text:" + json);
+            Wrapper<Assignment> wrapper;
+
+            try
+            {
+                 wrapper = JsonConvert.DeserializeObject<Wrapper<Assignment>>(json);
+                Debug.Log("JSON parsed successfully!");
+                Assignments = wrapper.Items;
+                Debug.Log("Check Assignments");
+                foreach (var item in Assignments)
+                {
+                    Debug.Log(item.Answer + " " + item.AssignmentItself);
+                }
+                Generate();
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"Failed to parse JSON: {ex.Message}");
+            }           
+            
         }
-
-        string json = File.ReadAllText(path);
-
-        Wrapper<Assignment> wrapper = JsonUtility.FromJson<Wrapper<Assignment>>(json);        
-        Assignments = wrapper.Items;
+        else
+        {
+            Debug.LogError($"Failed to load JSON. Error: {request.error}");
+        }
     }
 }

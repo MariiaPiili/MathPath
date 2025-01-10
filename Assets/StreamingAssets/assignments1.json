@@ -1,0 +1,52 @@
+{
+    "Items": [
+        {
+            "AssignmentItself": "5 + 2",
+            "Answer": "7"
+        },
+        {
+            "AssignmentItself": "three minus one",
+            "Answer": "2"
+        },
+        {
+            "AssignmentItself": "five plus seven",
+            "Answer": "12"
+        },
+        {
+            "AssignmentItself": "16-8",
+            "Answer": "8"
+        },
+        {
+            "AssignmentItself": "12+7",
+            "Answer": "19"
+        },
+        {
+            "AssignmentItself": "ten plus seven",
+            "Answer": "17"
+        },
+	{
+            "AssignmentItself": "9 + 1",
+            "Answer": "10"
+        },
+        {
+            "AssignmentItself": "four minus one",
+            "Answer": "3"
+        },
+        {
+            "AssignmentItself": "eleven plus three",
+            "Answer": "14"
+        },
+        {
+            "AssignmentItself": "19-8",
+            "Answer": "11"
+        },
+        {
+            "AssignmentItself": "8+3",
+            "Answer": "11"
+        },
+        {
+            "AssignmentItself": "seventeen minus seven",
+            "Answer": "10"
+        }
+            ]
+}

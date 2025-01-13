@@ -284,6 +284,8 @@ Note: You need to have a SendGrid account and API key. You can generate one from
 4. Run the app in the Unity Editor or build it for the desired platform.
 
 ## Screenshots 
+![game](1.jpg)
+![game](2.jpg)
 
 ## Contact
 

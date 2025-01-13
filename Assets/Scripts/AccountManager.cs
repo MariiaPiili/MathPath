@@ -66,10 +66,9 @@ public class AccountManager : MonoBehaviour
 
     public void Authorization()
     {
-        if (_userName == _userNameAuth.text && _userPassword == _userPasswordAuth.text)
-        {
-            //_userAuth = true;
-            IsAuthorized.Invoke();
+        if (_userName == _userNameAuth.text && _userPassword == _userPasswordAuth.text && _userNameAuth.text != "" && _userPasswordAuth.text != "")
+        {            
+            IsAuthorized.Invoke();            
         }
         else
         {

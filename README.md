@@ -284,8 +284,19 @@ Note: You need to have a SendGrid account and API key. You can generate one from
 4. Run the app in the Unity Editor or build it for the desired platform.
 
 ## Screenshots 
-![game](1.jpg)
-![game](2.jpg)
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <img src="1.jpg" alt="game" width="180">
+  <img src="2.jpg" alt="game" width="180">
+  <img src="3.jpg" alt="game" width="180">
+  <img src="4.jpg" alt="game" width="180">
+  <img src="5.jpg" alt="game" width="180">
+  <img src="6.jpg" alt="game" width="180">
+  <img src="7.jpg" alt="game" width="180">
+  <img src="8.jpg" alt="game" width="180">
+  <img src="9.jpg" alt="game" width="180">
+</div>
+
 
 ## Contact
 
